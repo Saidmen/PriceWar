@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class UserView extends StatelessWidget {
-  static const String route = '/user';
+class MainView extends StatelessWidget {
+  static const String route = '/main';
 
-  const UserView({super.key});
+  const MainView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +12,14 @@ class UserView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('User View'),
+            const Text('Main View'),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/main');
+                Navigator.pushNamed(context, '/user');
               },
-              child: const Text('Go to Main'),
+              child: const Text('Go to User'),
             ),
-          ]
+          ],
         ),
       ),
     );
