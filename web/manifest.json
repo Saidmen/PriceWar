@@ -1,6 +1,6 @@
 {
-    "name": "prototipo_ventas",
-    "short_name": "prototipo_ventas",
+    "name": "offergo",
+    "short_name": "offergo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

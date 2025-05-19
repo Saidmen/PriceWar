@@ -1,3 +1,0 @@
-/*
-  Represents reusable button Widget.
- */

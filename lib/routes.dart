@@ -1,3 +1,0 @@
-/*
-  Represents the Views routes of the application.
- */

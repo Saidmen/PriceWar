@@ -1,3 +1,0 @@
-/*
-  Represents logic of the View.
- */

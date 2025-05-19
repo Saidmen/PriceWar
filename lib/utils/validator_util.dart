@@ -1,3 +1,0 @@
-/*
-  Represents auxiliary functions for validation.
- */
