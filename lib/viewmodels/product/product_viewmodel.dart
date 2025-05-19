@@ -1,0 +1,3 @@
+/*
+  Represents the view model for the product page.
+ */
