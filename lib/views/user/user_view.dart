@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:offergo/views/common/main_view.dart';
 
 class UserView extends StatelessWidget {
   static const String route = '/user';
@@ -15,7 +16,7 @@ class UserView extends StatelessWidget {
             const Text('User View'),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/main');
+                Navigator.pushNamed(context, MainView.route);
               },
               child: const Text('Go to Main'),
             ),
