@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'views/buyer_page.dart';
-import 'views/seller_page.dart';
+import 'views/sales/buyer_page.dart';
+import 'views/sales/seller_page.dart';
 
 void main() {
   runApp(const MyApp());
