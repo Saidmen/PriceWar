@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:offergo/views/history/purchase-detail.dart';
 
 class PurchasesView extends StatefulWidget {
   static const String route = '/purchases';
@@ -182,7 +183,11 @@ class _PurchasesViewState extends State<PurchasesView> {
       ),
       child: InkWell(
         onTap: () {
-          // Navegar al detalle de la compra
+          Navigator.pushNamed(
+            context,
+            PurchaseDetailView.route,
+            arguments: index,
+          );
         },
         borderRadius: BorderRadius.circular(12),
         child: Padding(
@@ -192,7 +197,6 @@ class _PurchasesViewState extends State<PurchasesView> {
             children: [
               Row(
                 children: [
-                  // Imagen del producto
                   Container(
                     width: 70,
                     height: 70,
