@@ -4,6 +4,7 @@ import 'package:offergo/views/history/purchase-detail.dart';
 import 'package:offergo/views/history/purchase.dart';
 import 'package:offergo/views/history/sales.dart';
 import 'package:offergo/views/notification/notifications_view.dart';
+import 'package:offergo/views/product/product_offered_view.dart';
 import 'package:offergo/views/product/product_view.dart';
 import 'package:offergo/views/user/user_view.dart';
 
@@ -39,6 +40,16 @@ class AppRouter {
         final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (_) => ProductDetailView(
+            name: args['name'],
+            price: args['price'],
+            imagePath: args['imagePath'],
+          ),
+        );
+
+      case ProductOfferedView.route:
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => ProductOfferedView(
             name: args['name'],
             price: args['price'],
             imagePath: args['imagePath'],

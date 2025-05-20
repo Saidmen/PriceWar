@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:offergo/views/notification/notifications_view.dart';
+import 'package:offergo/views/product/product_offered_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -241,7 +242,7 @@ class HomeView extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(
                 context,
-                '/product-detail',
+                ProductOfferedView.route,
                 arguments: {
                   'name': product['name'],
                   'price': product['price'],
@@ -255,7 +256,7 @@ class HomeView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.15),
+                    color: Colors.grey,
                     blurRadius: 8,
                     offset: const Offset(0, 4),
                   ),
