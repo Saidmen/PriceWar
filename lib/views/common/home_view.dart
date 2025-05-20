@@ -86,9 +86,9 @@ class HomeView extends StatelessWidget {
                   _buildPromoBanner(),
 
                   const SizedBox(height: 28),
-                  _buildSectionTitle('Products', showViewAll: true),
-                  const SizedBox(height: 16),
-                  _buildProductsGrid(),
+                  _buildSectionTitle('Products Offered', showViewAll: true),
+
+                  _buildProductsGrid(context),
                 ],
               ),
             ),
@@ -200,11 +200,33 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildProductsGrid() {
+  Widget _buildProductsGrid(BuildContext context) {
+    final List<Map<String, dynamic>> products = [
+      {
+        'name': 'Wireless Headphones',
+        'price': 59.99,
+        'image': 'assets/headphones.jpg',
+      },
+      {
+        'name': 'Smartwatch Series 6',
+        'price': 129.99,
+        'image': 'assets/smartwatch.jpg',
+      },
+      {
+        'name': 'Running Shoes',
+        'price': 89.50,
+        'image': 'assets/shoes.jpg',
+      },
+      {
+        'name': 'Bluetooth Speaker',
+        'price': 39.99,
+        'image': 'assets/speaker.jpg',
+      },
+    ];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: GridView.builder(
-        itemCount: 4,
+        itemCount: products.length,
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -214,27 +236,61 @@ class HomeView extends StatelessWidget {
           childAspectRatio: 0.8,
         ),
         itemBuilder: (context, index) {
-          return Container(
-            decoration: BoxDecoration(
-              color: const Color(0xFFF5F7FB),
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 8,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(Icons.shopping_bag, size: 48, color: Colors.blue),
-                SizedBox(height: 8),
-                Text('Producto', style: TextStyle(fontWeight: FontWeight.bold)),
-                SizedBox(height: 4),
-                Text('\$79.99', style: TextStyle(color: Colors.grey)),
-              ],
+          final product = products[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/product-detail',
+                arguments: {
+                  'name': product['name'],
+                  'price': product['price'],
+                  'imagePath': product['image'],
+                },
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFFF5F7FB),
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.15),
+                    blurRadius: 8,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                    child: Image.asset(
+                      product['image'],
+                      height: 110,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      product['name'],
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '\$${product['price']}',
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
           );
         },
