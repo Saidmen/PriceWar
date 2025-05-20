@@ -24,7 +24,7 @@ class ProductDetailView extends StatelessWidget {
           const SizedBox(height: 20),
           Text(name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
-          Text('\$${price.toStringAsFixed(2)}', style: const TextStyle(fontSize: 18, color: Colors.blue)),
+          Text('${price.toStringAsFixed(2)} Bs', style: const TextStyle(fontSize: 18, color: Colors.blue)),
           const SizedBox(height: 20),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),

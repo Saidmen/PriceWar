@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:offergo/views/product/product_view.dart';
 
 class ProductsView extends StatelessWidget {
   static const String route = '/products';
@@ -110,7 +111,7 @@ class ProductsView extends StatelessWidget {
           onTap: () {
             Navigator.pushNamed(
               context,
-              '/product-detail', // o ProductDetailView.route si usas constante
+              ProductDetailView.route,
               arguments: {
                 'name': product['name'],
                 'price': product['price'],
