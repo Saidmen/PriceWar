@@ -3,6 +3,7 @@ import 'package:offergo/views/common/main_view.dart';
 import 'package:offergo/views/history/purchase-detail.dart';
 import 'package:offergo/views/history/purchase.dart';
 import 'package:offergo/views/history/sales.dart';
+import 'package:offergo/views/notification/notifications_view.dart';
 import 'package:offergo/views/user/user_view.dart';
 
 class AppRouter {
@@ -29,7 +30,10 @@ class AppRouter {
           );
         }
         return MaterialPageRoute(builder: (_) => const PurchasesView());
-        
+
+      case NotificationsView.route:
+        return MaterialPageRoute(builder: (_) => const NotificationsView());
+
       default:
         return _errorRoute();
     }
