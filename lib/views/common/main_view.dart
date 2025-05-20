@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:offergo/views/product/product_view.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:offergo/views/common/home_view.dart';
 import 'package:offergo/views/user/user_view.dart';
@@ -17,8 +18,7 @@ class _MainViewState extends State<MainView> {
 
   final List<Widget> _pages = [
     const HomeView(),
-    // const UserView(),
-    // const UserView(),
+    const ProductView(),
     const UserView(),
     // Add more pages here
   ];
@@ -39,11 +39,11 @@ class _MainViewState extends State<MainView> {
             title: const Text("Home"),
             selectedColor: Colors.blue,
           ),
-          // SalomonBottomBarItem(
-          //   icon: const Icon(Icons.store),
-          //   title: const Text("Store"),
-          //   selectedColor: Colors.green,
-          // ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.store),
+            title: const Text("Store"),
+            selectedColor: Colors.green,
+          ),
           // SalomonBottomBarItem(
           //   icon: const Icon(Icons.favorite),
           //   title: const Text("Wishlist"),
