@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:offergo/views/notificacion/notifications_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -30,9 +31,14 @@ class HomeView extends StatelessWidget {
                             'Good day for shopping',
                             style: TextStyle(color: Colors.white70, fontSize: 14),
                           ),
-                          CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: Icon(Icons.notifications_none, color: Colors.black87),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, NotificationsView.route);
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Icon(Icons.notifications_none, color: Colors.black87),
+                            ),
                           )
                         ],
                       ),
