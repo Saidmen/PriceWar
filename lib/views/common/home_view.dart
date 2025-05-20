@@ -6,18 +6,51 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          _buildHeader(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: _buildSearchBar(),
+      backgroundColor: Colors.blueAccent,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            automaticallyImplyLeading: false,
+            pinned: false,
+            floating: false,
+            expandedHeight: 250,
+            backgroundColor: Colors.blueAccent,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildHeader(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: _buildSearchBar(),
+                  ),
+                ],
+              ),
+            ),
           ),
-          _buildPromoBanner(),
-          const SizedBox(height: 16),
-          _buildCategories(),
-          const SizedBox(height: 16),
-          _buildExploreSection(),
+
+          SliverToBoxAdapter(
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 24),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  topRight: Radius.circular(40),
+                ),
+              ),
+              child: Column(
+                children: [
+                  _buildPromoBanner(),
+                  const SizedBox(height: 16),
+                  _buildCategories(),
+                  const SizedBox(height: 24),
+                  _buildExploreSection(),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -25,21 +58,18 @@ class HomeView extends StatelessWidget {
 
   Widget _buildSearchBar() {
     return Container(
-      padding: const EdgeInsets.all(16.0),
-      child: SizedBox(
-        height: 80,
-        child: TextField(
-          decoration: InputDecoration(
-            hintText: 'Buscar en perfil...',
-            hintStyle: const TextStyle(fontSize: 14),
-            prefixIcon: const Icon(Icons.search, size: 20),
-            filled: true,
-            fillColor: Colors.grey[200],
-            contentPadding: const EdgeInsets.symmetric(vertical: 0),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide.none,
-            ),
+      padding: const EdgeInsets.only(top: 12),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: 'Buscar en perfil...',
+          hintStyle: const TextStyle(fontSize: 14),
+          prefixIcon: const Icon(Icons.search, size: 20),
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: const EdgeInsets.symmetric(vertical: 0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
           ),
         ),
       ),
@@ -48,18 +78,7 @@ class HomeView extends StatelessWidget {
 
   Widget _buildHeader() {
     return Container(
-      padding: const EdgeInsets.fromLTRB(16.0, 50.0, 16.0, 12.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            spreadRadius: 1,
-            blurRadius: 3,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
+      padding: const EdgeInsets.fromLTRB(16.0, 50.0, 16.0, 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -68,18 +87,14 @@ class HomeView extends StatelessWidget {
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: Colors.white,
             ),
           ),
-          Row(
-            children: [
-              IconButton(
-                icon: const Icon(Icons.notifications_outlined),
-                onPressed: () {
-                  // Handle notifications
-                },
-              ),
-            ],
+          IconButton(
+            icon: const Icon(Icons.notifications_outlined, color: Colors.white),
+            onPressed: () {
+              // Handle notifications
+            },
           ),
         ],
       ),
@@ -145,18 +160,32 @@ class HomeView extends StatelessWidget {
   }
 
   Widget _buildExploreSection() {
-    return Expanded(
-      child: Container(
-        width: double.infinity,
-        decoration: const ShapeDecoration(
-          color: Colors.black,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(50),
-              topRight: Radius.circular(50),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: List.generate(4, (index) {
+          return Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+              borderRadius: BorderRadius.circular(12),
             ),
-          ),
-        ),
+            child: Row(
+              children: [
+                const Icon(Icons.shopping_bag_outlined, size: 36),
+                const SizedBox(width: 12),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text('Producto destacado', style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text('\$29.99', style: TextStyle(color: Colors.grey)),
+                  ],
+                ),
+              ],
+            ),
+          );
+        }),
       ),
     );
   }
