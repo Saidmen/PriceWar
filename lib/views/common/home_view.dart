@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:offergo/views/notificacion/notifications_view.dart';
+import 'package:offergo/views/notification/notifications_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
