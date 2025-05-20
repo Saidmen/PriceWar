@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:offergo/views/common/main_view.dart';
+import 'package:offergo/views/history/purchase.dart';
 import 'package:offergo/views/user/user_view.dart';
 
 class AppRouter {
@@ -10,6 +11,9 @@ class AppRouter {
 
       case UserView.route:
         return MaterialPageRoute(builder: (_) => const UserView());
+
+      case PurchasesView.route:
+        return MaterialPageRoute(builder: (_) => const PurchasesView());
 
       default:
         return _errorRoute();
