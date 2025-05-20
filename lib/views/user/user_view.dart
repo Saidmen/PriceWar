@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:offergo/views/history/purchase.dart';
+import 'package:offergo/views/history/sales.dart';
 
 class UserView extends StatelessWidget {
   static const String route = '/user';
@@ -150,7 +151,9 @@ class UserView extends StatelessWidget {
                         context, 
                         Icons.sell_outlined, 
                         'Mis ventas',
-                        () {/* Navegar a mis ventas */},
+                        () {
+                          Navigator.pushNamed(context, SalesView.route);
+                        },
                       ),
                       _buildQuickAction(
                         context, 
