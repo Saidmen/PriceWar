@@ -6,35 +6,78 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.home, size: 64, color: Colors.blue),
-            const SizedBox(height: 16),
-            const Text(
-              'Welcome to OfferGo!',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'This is the Home tab.',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                // Acción de prueba
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Botón presionado')),
-                );
-              },
-              child: const Text('Probar acción'),
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          _buildHeader(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: _buildSearchBar(),
+          ),
+        ],
       ),
     );
   }
+}
+
+Widget _buildSearchBar() {
+  return Container(
+    padding: const EdgeInsets.all(16.0),
+    child: SizedBox(
+      height: 80,
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: 'Buscar en perfil...',
+          hintStyle: const TextStyle(fontSize: 14),
+          prefixIcon: const Icon(Icons.search, size: 20),
+          filled: true,
+          fillColor: Colors.grey[200],
+          contentPadding: const EdgeInsets.symmetric(vertical: 0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _buildHeader() {
+  return Container(
+    padding: const EdgeInsets.fromLTRB(16.0, 50.0, 16.0, 12.0),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey,
+          spreadRadius: 1,
+          blurRadius: 3,
+          offset: const Offset(0, 2),
+        ),
+      ],
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          'OfferGo',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.notifications_outlined),
+              onPressed: () {
+                // Handle notifications
+              },
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }
