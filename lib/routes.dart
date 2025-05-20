@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:offergo/views/common/main_view.dart';
 import 'package:offergo/views/history/purchase-detail.dart';
 import 'package:offergo/views/history/purchase.dart';
+import 'package:offergo/views/history/sales.dart';
 import 'package:offergo/views/user/user_view.dart';
 
 class AppRouter {
@@ -15,6 +16,9 @@ class AppRouter {
 
       case PurchasesView.route:
         return MaterialPageRoute(builder: (_) => const PurchasesView());
+
+      case SalesView.route:
+        return MaterialPageRoute(builder: (_) => const SalesView());  
 
       case PurchaseDetailView.route:
         if (settings.arguments is int) {
