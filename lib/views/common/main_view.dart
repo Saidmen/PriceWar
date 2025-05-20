@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:offergo/views/common/home_view.dart';
-import 'package:offergo/views/product/product_view.dart';
+import 'package:offergo/views/product/add_product_view.dart';
 import 'package:offergo/views/product/products_view.dart';
 import 'package:offergo/views/user/user_view.dart';
 
@@ -16,7 +16,7 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   int _currentIndex = 0;
-  bool typeUser = false;
+  bool typeUser = true;
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +36,14 @@ class _MainViewState extends State<MainView> {
         selectedColor: Colors.blue,
       ),
       SalomonBottomBarItem(
-        icon: const Icon(Icons.store),
+        icon: const Icon(Icons.add_circle),
         title: const Text("Store"),
         selectedColor: Colors.green,
       ),
       if (typeUser)
         SalomonBottomBarItem(
-          icon: const Icon(Icons.favorite),
-          title: const Text("Wishlist"),
+          icon: const Icon(Icons.whatshot_rounded),
+          title: const Text("Products"),
           selectedColor: Colors.pink,
         ),
       SalomonBottomBarItem(

@@ -4,6 +4,7 @@ import 'package:offergo/views/history/purchase-detail.dart';
 import 'package:offergo/views/history/purchase.dart';
 import 'package:offergo/views/history/sales.dart';
 import 'package:offergo/views/notification/notifications_view.dart';
+import 'package:offergo/views/product/product_view.dart';
 import 'package:offergo/views/user/user_view.dart';
 
 class AppRouter {
@@ -19,20 +20,30 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const PurchasesView());
 
       case SalesView.route:
-        return MaterialPageRoute(builder: (_) => const SalesView());  
+        return MaterialPageRoute(builder: (_) => const SalesView());
 
       case PurchaseDetailView.route:
         if (settings.arguments is int) {
           return MaterialPageRoute(
-            builder: (_) => PurchaseDetailView(
-              purchaseId: settings.arguments as int,
-            ),
+            builder:
+                (_) =>
+                    PurchaseDetailView(purchaseId: settings.arguments as int),
           );
         }
         return MaterialPageRoute(builder: (_) => const PurchasesView());
 
       case NotificationsView.route:
         return MaterialPageRoute(builder: (_) => const NotificationsView());
+
+      case ProductDetailView.route:
+        final args = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => ProductDetailView(
+            name: args['name'],
+            price: args['price'],
+            imagePath: args['imagePath'],
+          ),
+        );
 
       default:
         return _errorRoute();

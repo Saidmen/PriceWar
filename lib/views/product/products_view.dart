@@ -79,7 +79,7 @@ class ProductsView extends StatelessWidget {
                     mainAxisSpacing: 20,
                     childAspectRatio: 0.7,
                   ),
-                  itemBuilder: (context, index) => _buildProductCard(products[index]),
+                  itemBuilder: (context, index) => _buildProductCard(context, products[index]),
                 ),
               ),
             ],
@@ -89,7 +89,7 @@ class ProductsView extends StatelessWidget {
     );
   }
   
-  Widget _buildProductCard(Map<String, dynamic> product) {
+  Widget _buildProductCard(BuildContext context, Map<String, dynamic> product) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -107,7 +107,17 @@ class ProductsView extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(
+              context,
+              '/product-detail', // o ProductDetailView.route si usas constante
+              arguments: {
+                'name': product['name'],
+                'price': product['price'],
+                'imagePath': product['image'],
+              },
+            );
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

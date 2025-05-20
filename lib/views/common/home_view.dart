@@ -14,7 +14,7 @@ class HomeView extends StatelessWidget {
             automaticallyImplyLeading: false,
             pinned: false,
             floating: false,
-            expandedHeight: 230,
+            expandedHeight: 200,
             backgroundColor: const Color(0xFF4F68F7),
             flexibleSpace: FlexibleSpaceBar(
               background: SafeArea(
@@ -28,8 +28,8 @@ class HomeView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Good day for shopping',
-                            style: TextStyle(color: Colors.white70, fontSize: 14),
+                            'Welcome back, User',
+                            style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w700),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -42,12 +42,7 @@ class HomeView extends StatelessWidget {
                           )
                         ],
                       ),
-                      const SizedBox(height: 6),
-                      const Text(
-                        'Taimoor Sikander',
-                        style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 60),
                       Container(
                         height: 44,
                         decoration: BoxDecoration(
@@ -56,9 +51,9 @@ class HomeView extends StatelessWidget {
                         ),
                         child: const TextField(
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(top: 2),
+                            contentPadding: EdgeInsets.only(top: 10),
                             prefixIcon: Icon(Icons.search),
-                            hintText: 'Search in Store',
+                            hintText: 'Search in App',
                             border: InputBorder.none,
                           ),
                         ),
@@ -83,7 +78,7 @@ class HomeView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildSectionTitle('Popular Categories'),
+                  _buildSectionTitle('Categories'),
                   const SizedBox(height: 12),
                   _buildCategories(),
 
@@ -91,7 +86,7 @@ class HomeView extends StatelessWidget {
                   _buildPromoBanner(),
 
                   const SizedBox(height: 28),
-                  _buildSectionTitle('Popular Products', showViewAll: true),
+                  _buildSectionTitle('Products', showViewAll: true),
                   const SizedBox(height: 16),
                   _buildProductsGrid(),
                 ],
