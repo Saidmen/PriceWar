@@ -19,6 +19,7 @@ class _ProductViewState extends State<ProductView> {
 
   final List<String> _categories = ['Electronics', 'Clothing', 'Food', 'Furniture', 'Other'];
 
+  // Move to viewmodel
   @override
   void dispose() {
     _nameController.dispose();
@@ -51,7 +52,7 @@ class _ProductViewState extends State<ProductView> {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-          color: Colors.black.withOpacity(0.05),
+          color: Colors.black,
           blurRadius: 20,
           offset: const Offset(0, 5),
           ),
@@ -94,7 +95,7 @@ class _ProductViewState extends State<ProductView> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white,
                 shape: BoxShape.circle,
                 ),
                 child: Icon(Icons.add_photo_alternate_rounded, size: 50, color: Colors.blue.shade400),
