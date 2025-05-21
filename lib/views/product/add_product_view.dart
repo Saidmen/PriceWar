@@ -37,14 +37,14 @@ class _ProductViewState extends State<ProductView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FD),
+      backgroundColor: Colors.white, // Fondo blanco
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
-          'Add Product',
-          style: TextStyle(fontWeight: FontWeight.w600),
+          'Add Demand',
+          style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
         ),
-        backgroundColor: const Color(0xFF4F68F7),
+        backgroundColor: Colors.black, // AppBar negro
         elevation: 0,
         centerTitle: true,
         shape: const RoundedRectangleBorder(
@@ -52,6 +52,7 @@ class _ProductViewState extends State<ProductView> {
             bottom: Radius.circular(20),
           ),
         ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -62,7 +63,7 @@ class _ProductViewState extends State<ProductView> {
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: Colors.black,
+                color: Colors.black.withOpacity(0.08),
                 blurRadius: 20,
                 offset: const Offset(0, 5),
               ),
@@ -78,7 +79,7 @@ class _ProductViewState extends State<ProductView> {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF333333),
+                    color: Colors.black,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -91,14 +92,14 @@ class _ProductViewState extends State<ProductView> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.grey.shade200,
+                        color: Colors.black12,
                         width: 2,
                       ),
                       borderRadius: BorderRadius.circular(20),
                       gradient: LinearGradient(
                         colors: [
-                          Colors.blue.shade50,
-                          Colors.grey.shade50,
+                          Colors.white,
+                          Colors.grey.shade100,
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -110,29 +111,29 @@ class _ProductViewState extends State<ProductView> {
                         Container(
                           padding: const EdgeInsets.all(16),
                           decoration: const BoxDecoration(
-                            color: Colors.white,
+                            color: Colors.black,
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.add_photo_alternate_rounded,
                             size: 50,
-                            color: Colors.blue.shade400,
+                            color: Colors.white,
                           ),
                         ),
                         const SizedBox(height: 12),
-                        Text(
+                        const Text(
                           'Upload product image',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: Colors.grey.shade700,
+                            color: Colors.black87,
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Tap to browse',
                           style: TextStyle(
                             fontSize: 13,
-                            color: Colors.grey.shade600,
+                            color: Colors.black54,
                           ),
                         ),
                       ],
@@ -214,7 +215,7 @@ class _ProductViewState extends State<ProductView> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: const Text('Product saved successfully'),
-                            backgroundColor: Colors.green.shade600,
+                            backgroundColor: Colors.black,
                             behavior: SnackBarBehavior.floating,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -224,7 +225,7 @@ class _ProductViewState extends State<ProductView> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF4F68F7),
+                      backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
                       elevation: 2,
                       padding: const EdgeInsets.symmetric(vertical: 16),
@@ -266,16 +267,19 @@ class _ProductViewState extends State<ProductView> {
       keyboardType: keyboardType,
       validator: validator,
       decoration: InputDecoration(
-        prefixIcon: Icon(icon),
+        prefixIcon: Icon(icon, color: Colors.black87),
         labelText: label,
+        labelStyle: const TextStyle(color: Colors.black87),
         hintText: hint,
+        hintStyle: const TextStyle(color: Colors.black54),
         filled: true,
-        fillColor: const Color(0xFFF9FAFC),
+        fillColor: Colors.grey.shade100,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
       ),
+      style: const TextStyle(color: Colors.black),
     );
   }
 
@@ -283,19 +287,21 @@ class _ProductViewState extends State<ProductView> {
     return DropdownButtonFormField<String>(
       value: _selectedCategory,
       decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.category),
+        prefixIcon: const Icon(Icons.category, color: Colors.black87),
         labelText: 'Category',
+        labelStyle: const TextStyle(color: Colors.black87),
         filled: true,
-        fillColor: const Color(0xFFF9FAFC),
+        fillColor: Colors.grey.shade100,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
       ),
+      dropdownColor: Colors.white,
       items: _categories
           .map((category) => DropdownMenuItem(
                 value: category,
-                child: Text(category),
+                child: Text(category, style: const TextStyle(color: Colors.black)),
               ))
           .toList(),
       onChanged: (value) => setState(() => _selectedCategory = value),

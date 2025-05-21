@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:offergo/views/notification/notifications_view.dart';
 import 'package:offergo/views/product/product_offered_view.dart';
+import 'package:offergo/views/product/update_price_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
+  // ...existing code...
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F6FD),
+      backgroundColor: Colors.white, // Fondo principal blanco
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -16,7 +18,7 @@ class HomeView extends StatelessWidget {
             pinned: false,
             floating: false,
             expandedHeight: 200,
-            backgroundColor: const Color(0xFF4F68F7),
+            backgroundColor: Colors.black, // AppBar negro
             flexibleSpace: FlexibleSpaceBar(
               background: SafeArea(
                 child: Padding(
@@ -30,13 +32,17 @@ class HomeView extends StatelessWidget {
                         children: [
                           const Text(
                             'Welcome back, User',
-                            style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w700),
+                            style: TextStyle(
+                              color: Colors.white, // Texto blanco sobre negro
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                           GestureDetector(
                             onTap: () {
                               Navigator.pushNamed(context, NotificationsView.route);
                             },
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               backgroundColor: Colors.white,
                               child: Icon(Icons.notifications_none, color: Colors.black87),
                             ),
@@ -47,16 +53,18 @@ class HomeView extends StatelessWidget {
                       Container(
                         height: 44,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.grey.shade200, // Fondo gris claro para el buscador
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const TextField(
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 10),
-                            prefixIcon: Icon(Icons.search),
+                            prefixIcon: Icon(Icons.search, color: Colors.black54),
                             hintText: 'Search in App',
+                            hintStyle: TextStyle(color: Colors.black38),
                             border: InputBorder.none,
                           ),
+                          style: TextStyle(color: Colors.black87),
                         ),
                       ),
                     ],
@@ -105,9 +113,9 @@ class HomeView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: showViewAll ? MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
           if (showViewAll)
-            Text('View all', style: TextStyle(color: Colors.blue.shade600, fontSize: 14)),
+            const Text('View all', style: TextStyle(color: Colors.black54, fontSize: 14)),
         ],
       ),
     );
@@ -128,11 +136,11 @@ class HomeView extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 26,
-                backgroundColor: const Color(0xFFE0E7FF),
-                child: const Icon(Icons.category, color: Color(0xFF4F68F7)),
+                backgroundColor: Colors.grey.shade300, // Gris claro
+                child: const Icon(Icons.category, color: Colors.black87),
               ),
               const SizedBox(height: 6),
-              Text(categories[index], style: const TextStyle(fontSize: 12)),
+              Text(categories[index], style: const TextStyle(fontSize: 12, color: Colors.black87)),
             ],
           );
         },
@@ -140,6 +148,7 @@ class HomeView extends StatelessWidget {
     );
   }
 
+  // ...existing code...
   Widget _buildPromoBanner() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -148,50 +157,62 @@ class HomeView extends StatelessWidget {
         child: PageView.builder(
           itemCount: 3,
           itemBuilder: (context, index) {
-            final titles = ['LAST SALE', '', ''];
-            
-            return Container(
-              margin: const EdgeInsets.only(right: 4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                image: const DecorationImage(
-                  image: AssetImage('assets/sneakers.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
+            final titles = ['Ofertas', 'Nuevos Productos', 'Descuentos'];
+
+            return GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, UpdatePriceView.route);
+              },
               child: Container(
+                margin: const EdgeInsets.only(right: 4),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  gradient: LinearGradient(
-                    colors: [Colors.black, Colors.transparent],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
+                  image: const DecorationImage(
+                    image: AssetImage('assets/sneakers.jpg'),
+                    fit: BoxFit.cover,
                   ),
                 ),
-                padding: const EdgeInsets.all(16),
-                alignment: Alignment.bottomLeft,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      titles[index],
-                      style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, height: 1.4),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    gradient: LinearGradient(
+                      colors: [Colors.black87, Colors.transparent],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
                     ),
-                    Row(
-                      children: List.generate(3, (dotIndex) {
-                        return Container(
-                          margin: const EdgeInsets.only(left: 4),
-                          width: 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
-                        );
-                      }),
-                    ),
-                  ],
+                  ),
+                  padding: const EdgeInsets.all(16),
+                  alignment: Alignment.bottomLeft,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        titles[index],
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          height: 1.4,
+                        ),
+                      ),
+                      Row(
+                        children: List.generate(3, (dotIndex) {
+                          return Container(
+                            margin: const EdgeInsets.only(left: 4),
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: dotIndex == index
+                                  ? Colors.white
+                                  : Colors.grey.shade400,
+                            ),
+                          );
+                        }),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
@@ -199,6 +220,8 @@ class HomeView extends StatelessWidget {
         ),
       ),
     );
+  }
+// ...existing code...
   }
 
   Widget _buildProductsGrid(BuildContext context) {
@@ -252,11 +275,11 @@ class HomeView extends StatelessWidget {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: const Color(0xFFF5F7FB),
+                color: Colors.grey.shade100, // Fondo gris muy claro
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey,
+                    color: Colors.grey.shade300,
                     blurRadius: 8,
                     offset: const Offset(0, 4),
                   ),
@@ -279,7 +302,7 @@ class HomeView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Text(
                       product['name'],
-                      style: const TextStyle(fontWeight: FontWeight.w600),
+                      style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.black87),
                       textAlign: TextAlign.center,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -288,7 +311,7 @@ class HomeView extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     '\$${product['price']}',
-                    style: const TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.black54),
                   ),
                 ],
               ),
@@ -298,4 +321,4 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
-}
+// ...existing code...

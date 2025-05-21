@@ -7,10 +7,15 @@ import 'package:offergo/views/notification/notifications_view.dart';
 import 'package:offergo/views/product/product_offered_view.dart';
 import 'package:offergo/views/product/product_view.dart';
 import 'package:offergo/views/user/user_view.dart';
+import 'package:offergo/views/product/update_price_view.dart';
 
 class AppRouter {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
+
+      case UpdatePriceView.route:
+      return MaterialPageRoute(builder: (_) => const UpdatePriceView());
+
       case MainView.route:
         return MaterialPageRoute(builder: (_) => const MainView());
 
