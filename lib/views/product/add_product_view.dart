@@ -41,7 +41,7 @@ class _ProductViewState extends State<ProductView> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
-          'Add Demand',
+          'Añadir Demanda',
           style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
         ),
         backgroundColor: Colors.black, // AppBar negro
@@ -75,7 +75,7 @@ class _ProductViewState extends State<ProductView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Product Details",
+                  "Detalle del Producto",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -122,7 +122,7 @@ class _ProductViewState extends State<ProductView> {
                         ),
                         const SizedBox(height: 12),
                         const Text(
-                          'Upload product image',
+                          'Añade una imagen',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
@@ -130,7 +130,7 @@ class _ProductViewState extends State<ProductView> {
                           ),
                         ),
                         const Text(
-                          'Tap to browse',
+                          'Toca para explorar',
                           style: TextStyle(
                             fontSize: 13,
                             color: Colors.black54,
@@ -145,23 +145,23 @@ class _ProductViewState extends State<ProductView> {
                 // Product name
                 _buildTextField(
                   controller: _nameController,
-                  label: 'Product Name',
+                  label: 'Nombre del Producto',
                   icon: Icons.shopping_bag_outlined,
-                  hint: 'Enter product name',
+                  hint: 'Ingresa el nombre del producto',
                   validator: (v) =>
-                      v == null || v.isEmpty ? 'Product name required' : null,
+                      v == null || v.isEmpty ? 'Nombre del producto requerido' : null,
                 ),
                 const SizedBox(height: 18),
 
                 // Description
                 _buildTextField(
                   controller: _descriptionController,
-                  label: 'Description',
+                  label: 'Descripción',
                   icon: Icons.description_outlined,
-                  hint: 'Enter product description',
+                  hint: 'Ingresa la descripción del producto',
                   maxLines: 3,
                   validator: (v) =>
-                      v == null || v.isEmpty ? 'Description required' : null,
+                      v == null || v.isEmpty ? 'Descripción requerida' : null,
                 ),
                 const SizedBox(height: 18),
 
@@ -171,13 +171,13 @@ class _ProductViewState extends State<ProductView> {
                     Expanded(
                       child: _buildTextField(
                         controller: _priceController,
-                        label: 'Price',
+                        label: 'Precio',
                         icon: Icons.attach_money_rounded,
-                        hint: 'Enter price',
+                        hint: 'Ingresa el precio',
                         keyboardType: TextInputType.number,
                         validator: (v) {
-                          if (v == null || v.isEmpty) return 'Required';
-                          if (double.tryParse(v) == null) return 'Invalid number';
+                          if (v == null || v.isEmpty) return 'Requerido';
+                          if (double.tryParse(v) == null) return 'Número inválido';
                           return null;
                         },
                       ),
@@ -186,13 +186,13 @@ class _ProductViewState extends State<ProductView> {
                     Expanded(
                       child: _buildTextField(
                         controller: _stockController,
-                        label: 'Stock',
+                        label: 'Cantidad',
                         icon: Icons.inventory_2_outlined,
-                        hint: 'Enter quantity',
+                        hint: 'Ingresa la cantidad',
                         keyboardType: TextInputType.number,
                         validator: (v) {
-                          if (v == null || v.isEmpty) return 'Required';
-                          if (int.tryParse(v) == null) return 'Invalid number';
+                          if (v == null || v.isEmpty) return 'Requerido';
+                          if (int.tryParse(v) == null) return 'Número inválido';
                           return null;
                         },
                       ),
@@ -214,7 +214,7 @@ class _ProductViewState extends State<ProductView> {
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: const Text('Product saved successfully'),
+                            content: const Text('Producto guardado con éxito'),
                             backgroundColor: Colors.black,
                             behavior: SnackBarBehavior.floating,
                             shape: RoundedRectangleBorder(
@@ -235,7 +235,7 @@ class _ProductViewState extends State<ProductView> {
                     ),
                     icon: const Icon(Icons.save_outlined),
                     label: const Text(
-                      'SAVE PRODUCT',
+                      'GUARDAR DEMANDA',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

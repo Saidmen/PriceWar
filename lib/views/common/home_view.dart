@@ -6,74 +6,96 @@ import 'package:offergo/views/product/update_price_view.dart';
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
-  // ...existing code...
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Fondo principal blanco
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            pinned: false,
-            floating: false,
-            expandedHeight: 200,
-            backgroundColor: Colors.black, // AppBar negro
-            flexibleSpace: FlexibleSpaceBar(
-              background: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Welcome back, User',
-                            style: TextStyle(
-                              color: Colors.white, // Texto blanco sobre negro
-                              fontSize: 22,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, NotificationsView.route);
-                            },
-                            child: const CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: Icon(Icons.notifications_none, color: Colors.black87),
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: 60),
-                      Container(
-                        height: 44,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade200, // Fondo gris claro para el buscador
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const TextField(
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(top: 10),
-                            prefixIcon: Icon(Icons.search, color: Colors.black54),
-                            hintText: 'Search in App',
-                            hintStyle: TextStyle(color: Colors.black38),
-                            border: InputBorder.none,
-                          ),
-                          style: TextStyle(color: Colors.black87),
-                        ),
-                      ),
-                    ],
+              SliverAppBar(
+      automaticallyImplyLeading: false,
+      pinned: false,
+      floating: false,
+      expandedHeight: 260, // Reducido desde 300
+      backgroundColor: Colors.black,
+      flexibleSpace: FlexibleSpaceBar(
+  background: Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 20),
+    child: SafeArea(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+          maxHeight: 180, // igual o menor que expandedHeight
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 12),
+            Center(
+              child: Container(
+                height: 60, // reduce también este tamaño
+                width: 60,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: ClipOval(
+                  child: Image.asset(
+                    'assets/logo.jpg',
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
             ),
-          ),
-
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Bienvenido, Usuario',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, NotificationsView.route);
+                  },
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 14,
+                    child: Icon(Icons.notifications_none, size: 16, color: Colors.black87),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 6),
+            Container(
+              height: 32,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const TextField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(top: 6),
+                  prefixIcon: Icon(Icons.search, size: 16, color: Colors.black54),
+                  hintText: 'Buscar demandas',
+                  hintStyle: TextStyle(color: Colors.black38, fontSize: 12),
+                  border: InputBorder.none,
+                ),
+                style: TextStyle(color: Colors.black87, fontSize: 12),
+              ),
+            ),
+            const SizedBox(height: 6),
+          ],
+        ),
+      ),
+    ),
+  ),
+),
+    ),
           SliverToBoxAdapter(
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 24),
@@ -87,17 +109,14 @@ class HomeView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildSectionTitle('Categories'),
+                  _buildSectionTitle('Categorías de demandas'),
                   const SizedBox(height: 12),
                   _buildCategories(),
-
                   const SizedBox(height: 28),
                   _buildPromoBanner(),
-
                   const SizedBox(height: 28),
-                  _buildSectionTitle('Products Offered', showViewAll: true),
-
-                  _buildProductsGrid(context),
+                  _buildSectionTitle('Demandas activas', showViewAll: true),
+                  _buildDemandsGrid(context),
                 ],
               ),
             ),
@@ -115,14 +134,14 @@ class HomeView extends StatelessWidget {
         children: [
           Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
           if (showViewAll)
-            const Text('View all', style: TextStyle(color: Colors.black54, fontSize: 14)),
+            const Text('Ver todas', style: TextStyle(color: Colors.black54, fontSize: 14)),
         ],
       ),
     );
   }
 
   Widget _buildCategories() {
-    final categories = ['Shoes', 'Electro.', 'Clothes', 'Animals', 'Furniture', 'Beauty'];
+    final categories = ['Tecnología', 'Moda', 'Hogar', 'Oficina', 'Muebles', 'Belleza'];
 
     return SizedBox(
       height: 90,
@@ -136,7 +155,7 @@ class HomeView extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 26,
-                backgroundColor: Colors.grey.shade300, // Gris claro
+                backgroundColor: Colors.grey.shade300,
                 child: const Icon(Icons.category, color: Colors.black87),
               ),
               const SizedBox(height: 6),
@@ -148,7 +167,6 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  // ...existing code...
   Widget _buildPromoBanner() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -157,7 +175,12 @@ class HomeView extends StatelessWidget {
         child: PageView.builder(
           itemCount: 3,
           itemBuilder: (context, index) {
-            final titles = ['Ofertas', 'Nuevos Productos', 'Descuentos'];
+            final titles = ['Demanda 1', 'Demanda 2', 'Demanda 3'];
+            final images = [
+              'assets/sneakers.jpg',
+              'assets/sneakers.jpg',
+              'assets/sneakers.jpg',
+            ];
 
             return GestureDetector(
               onTap: () {
@@ -167,8 +190,8 @@ class HomeView extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 4),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  image: const DecorationImage(
-                    image: AssetImage('assets/sneakers.jpg'),
+                  image: DecorationImage(
+                    image: AssetImage(images[index]),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -221,36 +244,34 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
-// ...existing code...
-  }
 
-  Widget _buildProductsGrid(BuildContext context) {
-    final List<Map<String, dynamic>> products = [
+  Widget _buildDemandsGrid(BuildContext context) {
+    final List<Map<String, dynamic>> demands = [
       {
-        'name': 'Wireless Headphones',
-        'price': 59.99,
-        'image': 'assets/headphones.jpg',
+        'title': 'Laptop para diseño gráfico',
+        'price': 1200.00,
+        'image': 'assets/demanda1.jpg',
       },
       {
-        'name': 'Smartwatch Series 6',
-        'price': 129.99,
-        'image': 'assets/smartwatch.jpg',
+        'title': 'Silla ergonómica de oficina',
+        'price': 250.00,
+        'image': 'assets/demanda2.jpg',
       },
       {
-        'name': 'Running Shoes',
-        'price': 89.50,
-        'image': 'assets/shoes.jpg',
+        'title': 'Vestido de gala azul',
+        'price': 80.00,
+        'image': 'assets/demanda3.jpg',
       },
       {
-        'name': 'Bluetooth Speaker',
-        'price': 39.99,
-        'image': 'assets/speaker.jpg',
+        'title': 'Set de maquillaje profesional',
+        'price': 150.00,
+        'image': 'assets/demanda4.jpg',
       },
     ];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: GridView.builder(
-        itemCount: products.length,
+        itemCount: demands.length,
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -260,22 +281,22 @@ class HomeView extends StatelessWidget {
           childAspectRatio: 0.8,
         ),
         itemBuilder: (context, index) {
-          final product = products[index];
+          final demand = demands[index];
           return GestureDetector(
             onTap: () {
               Navigator.pushNamed(
                 context,
                 ProductOfferedView.route,
                 arguments: {
-                  'name': product['name'],
-                  'price': product['price'],
-                  'imagePath': product['image'],
+                  'name': demand['title'],
+                  'price': demand['price'],
+                  'imagePath': demand['image'],
                 },
               );
             },
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.grey.shade100, // Fondo gris muy claro
+                color: Colors.grey.shade100,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
@@ -291,7 +312,7 @@ class HomeView extends StatelessWidget {
                   ClipRRect(
                     borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
                     child: Image.asset(
-                      product['image'],
+                      demand['image'],
                       height: 110,
                       width: double.infinity,
                       fit: BoxFit.cover,
@@ -301,7 +322,7 @@ class HomeView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Text(
-                      product['name'],
+                      demand['title'],
                       style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.black87),
                       textAlign: TextAlign.center,
                       maxLines: 2,
@@ -310,7 +331,7 @@ class HomeView extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '\$${product['price']}',
+                    '\$${demand['price']}',
                     style: const TextStyle(color: Colors.black54),
                   ),
                 ],
@@ -321,4 +342,4 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
-// ...existing code...
+}

@@ -10,7 +10,7 @@ class UserView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Colors.white, // Fondo blanco
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
@@ -19,18 +19,11 @@ class UserView extends StatelessWidget {
             expandedHeight: 200.0,
             floating: false,
             pinned: true,
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Colors.black, // AppBar negro
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).primaryColor.withOpacity(0.8),
-                    ],
-                  ),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 99, 98, 98), // Fondo negro
                 ),
                 child: SafeArea(
                   child: Column(
@@ -48,23 +41,23 @@ class UserView extends StatelessWidget {
                               ),
                               shape: BoxShape.circle,
                             ),
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               radius: 45,
-                              backgroundColor: Colors.blue.shade100,
-                              child: const Icon(
+                              backgroundColor: Colors.white,
+                              child: Icon(
                                 Icons.person,
                                 size: 55,
-                                color: Colors.blue,
+                                color: Colors.black,
                               ),
                             ),
                           ),
-                          CircleAvatar(
+                          const CircleAvatar(
                             radius: 15,
                             backgroundColor: Colors.white,
                             child: Icon(
                               Icons.edit,
                               size: 16,
-                              color: Theme.of(context).primaryColor,
+                              color: Colors.black,
                             ),
                           ),
                         ],
@@ -97,7 +90,7 @@ class UserView extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 15),
               decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
@@ -133,6 +126,7 @@ class UserView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -179,7 +173,7 @@ class UserView extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
@@ -192,14 +186,14 @@ class UserView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
                     child: Text(
                       'Cuenta',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -231,13 +225,13 @@ class UserView extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.green.withOpacity(0.1),
+                        color: Colors.black.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Text(
                         'Verificado',
                         style: TextStyle(
-                          color: Colors.green,
+                          color: Colors.black,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
@@ -255,7 +249,7 @@ class UserView extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
@@ -268,14 +262,14 @@ class UserView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
                     child: Text(
                       'Ajustes',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -327,7 +321,7 @@ class UserView extends StatelessWidget {
                 child: Text(
                   'OfferGo v1.0.0',
                   style: TextStyle(
-                    color: Colors.grey.shade500,
+                    color: Colors.black54,
                     fontSize: 12,
                   ),
                 ),
@@ -345,18 +339,18 @@ class UserView extends StatelessWidget {
       children: [
         Text(
           value,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Theme.of(context).primaryColor,
+            color: Colors.black,
           ),
         ),
         const SizedBox(height: 4),
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
-            color: Colors.grey.shade600,
+            color: Colors.black54,
           ),
         ),
       ],
@@ -367,7 +361,7 @@ class UserView extends StatelessWidget {
     return Container(
       height: 40,
       width: 1,
-      color: Colors.grey.withOpacity(0.3),
+      color: Colors.black.withOpacity(0.3),
     );
   }
 
@@ -387,13 +381,13 @@ class UserView extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor.withOpacity(0.1),
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(31, 10, 1, 1),
                 shape: BoxShape.circle,
               ),
               child: Icon(
                 icon,
-                color: Theme.of(context).primaryColor,
+                color: Colors.black,
                 size: 24,
               ),
             ),
@@ -403,6 +397,7 @@ class UserView extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
+                color: Colors.black,
               ),
             ),
           ],
@@ -422,18 +417,19 @@ class UserView extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        color: textColor ?? Theme.of(context).primaryColor,
+        color: textColor ?? Colors.black,
       ),
       title: Text(
         title,
         style: TextStyle(
-          color: textColor,
+          color: textColor ?? Colors.black,
           fontWeight: FontWeight.w500,
         ),
       ),
       trailing: trailing ?? const Icon(
         Icons.arrow_forward_ios,
         size: 16,
+        color: Colors.black,
       ),
       onTap: onTap,
     );

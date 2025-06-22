@@ -29,6 +29,15 @@ class _UpdatePriceViewState extends State<UpdatePriceView> {
     });
   }
 
+  void _decreasePrice() {
+    setState(() {
+      if (newPrice > 1) {
+        newPrice -= 1;
+        _priceController.text = newPrice.toStringAsFixed(2);
+      }
+    });
+  }
+
   void _onPriceChanged(String value) {
     final parsed = double.tryParse(value);
     if (parsed != null && parsed > 0) {
@@ -54,7 +63,6 @@ class _UpdatePriceViewState extends State<UpdatePriceView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Imagen de los sneakers
             Container(
               height: 180,
               width: double.infinity,
@@ -74,7 +82,6 @@ class _UpdatePriceViewState extends State<UpdatePriceView> {
               ),
             ),
             const SizedBox(height: 24),
-            // Precios
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -83,8 +90,7 @@ class _UpdatePriceViewState extends State<UpdatePriceView> {
               ],
             ),
             const SizedBox(height: 16),
-            // Cantidad del producto
-             Row(
+            Row(
               children: [
                 const Icon(Icons.inventory_2_outlined, color: Colors.black54),
                 const SizedBox(width: 8),
@@ -98,7 +104,6 @@ class _UpdatePriceViewState extends State<UpdatePriceView> {
               ],
             ),
             const SizedBox(height: 24),
-            // Campo para nuevo precio
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -115,14 +120,7 @@ class _UpdatePriceViewState extends State<UpdatePriceView> {
               children: [
                 IconButton(
                   icon: const Icon(Icons.remove_circle_outline, color: Colors.black87),
-                  onPressed: () {
-                    setState(() {
-                      if (newPrice > 1) {
-                        newPrice -= 1;
-                        _priceController.text = newPrice.toStringAsFixed(2);
-                      }
-                    });
-                  },
+                  onPressed: _decreasePrice,
                 ),
                 Expanded(
                   child: TextFormField(
@@ -159,7 +157,7 @@ class _UpdatePriceViewState extends State<UpdatePriceView> {
               child: ElevatedButton.icon(
                 icon: const Icon(Icons.price_check_outlined),
                 label: const Text(
-                  "Solicitar nuevo precio",
+                  "Pujar nuevo precio",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1,
@@ -176,39 +174,6 @@ class _UpdatePriceViewState extends State<UpdatePriceView> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Solicitud enviada: \$${newPrice.toStringAsFixed(2)}'),
-                      backgroundColor: Colors.black,
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              height: 45,
-              child: OutlinedButton.icon(
-                icon: const Icon(Icons.check_circle_outline, color: Colors.black),
-                label: const Text(
-                  "Aceptar demanda",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: Colors.black),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: const Text('Demanda aceptada'),
                       backgroundColor: Colors.black,
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(

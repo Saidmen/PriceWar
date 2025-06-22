@@ -32,23 +32,23 @@ class _MainViewState extends State<MainView> {
     final List<SalomonBottomBarItem> items = [
       SalomonBottomBarItem(
         icon: const Icon(Icons.home),
-        title: const Text("Home"),
-        selectedColor: Colors.blue,
+        title: const Text("Inicio"),
+        selectedColor: const Color.fromARGB(255, 145, 146, 146),
       ),
       SalomonBottomBarItem(
         icon: const Icon(Icons.add_circle),
-        title: const Text("Store"),
+        title: const Text("Añadir Demanda"),
         selectedColor: Colors.green,
       ),
       if (typeUser)
         SalomonBottomBarItem(
           icon: const Icon(Icons.whatshot_rounded),
-          title: const Text("Products"),
+          title: const Text("Tus Demandas"),
           selectedColor: Colors.pink,
         ),
       SalomonBottomBarItem(
         icon: const Icon(Icons.person),
-        title: const Text("Profile"),
+        title: const Text("Perfil"),
         selectedColor: Colors.orange,
       ),
     ];
